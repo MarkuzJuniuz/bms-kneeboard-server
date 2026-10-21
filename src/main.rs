@@ -134,6 +134,7 @@ async fn get_briefings_path(
 
         println!("Waiting for Falcon BMS");
 
+        // Removed 'return' here so execution falls through correctly
         tokio::select! {
             strings = get_strings() => {
                 Some(strings[&StringId::BmsBriefingsDirectory].clone().into())
@@ -144,5 +145,8 @@ async fn get_briefings_path(
         }
     }
 
-    None
+    #[cfg(not(target_os = "windows"))]
+    {
+        None
+    }
 }
