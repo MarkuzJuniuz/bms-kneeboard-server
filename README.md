@@ -50,9 +50,14 @@ In OpenKneeboard, go to the settings (cogwheel in the bottom left corner), navig
 
 ![Preview][preview]
 
+## Recent Changes
+
+- **Fixed Sizing & Layout:** Locked down the window size to 1080x1327 and hid scrollbars so it fits cleanly.
+- **Style & Design Updates:** Cleaned up the visuals, centralized everything into `style.css`, and centered the loading screen.
+- **Under the Hood:** Bundled the stylesheet directly into the binary so it always loads properly, plus some minor callsign cleanup fixes.
+
 ## Command-line arguments
 
-```
 Usage: bms-kneeboard-server.exe [OPTIONS] [BRIEFING_DIR]
 
 Arguments:
@@ -63,10 +68,6 @@ Options:
   -h, --help             Print help
   -V, --version          Print version
 ```
-
-### Hidden feature (ssh, don't tell anyone)
-If you append `#width=2048` or some other number to the url `http://127.0.0.1:7878/#width=...` you can override the rendering width of the page. Default is `1024`
-
 [find-local-ip]: https://support.microsoft.com/en-us/windows/find-your-ip-address-in-windows-f21a9bbc-c582-55cd-35e0-73431160a1b9
 [config-manager]: assets/config-manager.png
 [preview]: assets/preview.png

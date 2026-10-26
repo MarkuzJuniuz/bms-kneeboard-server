@@ -5,77 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BMS Kneeboard</title>
-
-
+    <link rel="stylesheet" href="style.css" />
     <script>
         const evtSource = new EventSource("/sse");
         evtSource.addEventListener("poke", (e) => {
             location.reload();
         });
     </script>
-
-    <style>
-        html,
-        body {
-            background-color: #000;
-            font-family: sans-serif;
-            font-size: 14pt;
-            margin: 0px;
-        }
-
-        p {
-            margin: 0;
-            padding: 0;
-        }
-
-        table {
-            width: 100%;
-            border-spacing: 1px;
-            border-collapse: separate;
-            border-color: #FFF;
-        }
-
-        th, caption {
-            font-variant: small-caps;
-        }
-
-        th {
-            background: #CCC;
-        }
-
-        caption.leader {
-            background: #000;
-            color: #FFF;
-        }
-
-        td {
-            text-align: left;
-            padding: 1px 2px;
-        }
-
-        tr.primary {
-            font-weight: bold;
-        }
-
-        div.message_container {
-            position: absolute;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-        }
-        div.message {
-            color: #EEE;
-            flex: 1 1;
-            text-align: center;
-            font-weight: bold;
-            font-size: 2.5em;
-            text-shadow: 5px 5px 10px rgba(256,256,256,0.25)
-        }
-    </style>
 </head>
 
 <body>
@@ -117,15 +53,15 @@
 {% endfor %}
 
 {% endif %}
-<link rel="stylesheet" href="style.css" defer />
 <script defer>
 {
     let h = window.location.hash;
-    // Defaults
+    // Defaults matching style.css (1080x1327)
     let settings = {
-        width: 1024,
+        width: 1080,
+        height: 1327,
     };
-    // Override from #width=...
+    // Override from #width=... or #height=...
     if (h.length > 0) {
         h = h.substring(1);
         const parts = h.split('&');
@@ -143,17 +79,14 @@
         }
     }
 
-    let max_height = settings.width * 1.415126050420168; // A4 (ish)
-    let height = Math.min(max_height, Math.max(768, document.body.clientHeight));
-
     if (window.OpenKneeboard?.SetPreferredPixelSize) {
-        window.OpenKneeboard?.SetPreferredPixelSize(settings.width, height);
+        window.OpenKneeboard?.SetPreferredPixelSize(settings.width, settings.height);
     } else if (window.OpenKneeboard) {
         window?.chrome?.webview?.postMessage({
             "message": "OpenKneeboard/SimHub/DashboardLoaded",
             "data": {
                 "width": settings.width,
-                "height": height,
+                "height": settings.height,
             }
         });
     }

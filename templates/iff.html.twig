@@ -1,25 +1,3 @@
-<style>
-    :root {
-        --iff-background-primary: rgb(214, 179, 179);
-        --iff-background-secondary: rgb(179, 214, 212);
-        --iff-foreground-primary: #000;
-        --iff-foreground-secondary: #000;
-    }
-
-    tr.iff {
-        background-color: var(--iff-background-primary);
-        color: var(--iff-foreground-primary);
-    }
-
-    tr.iff:nth-child(even) {
-        background-color: var(--iff-background-secondary);
-        color: var(--iff-foreground-secondary);
-    }
-
-    tr.iff > td {
-        vertical-align: top;
-    }
-</style>
 <table>
     <caption class="leader">
         IFF - Initial
@@ -47,7 +25,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr class="iff">
+        <tr>
             <td>
                 {{ iff.initial.modes_active }}
             </td>

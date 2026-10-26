@@ -75,10 +75,13 @@ pub fn start(
 struct Poke;
 
 async fn style() -> Response<String> {
-    // read file next to executable called style.css
-    let file = std::fs::read_to_string("style.css").unwrap_or_default(); // empty string as default
+    // Embeds style.css into the binary at compile time
+    let file = include_str!("../style.css").to_string();
 
-    Response::new(file)
+    Response::builder()
+        .header("content-type", "text/css")
+        .body(file)
+        .unwrap()
 }
 
 async fn a404() -> Response<String> {

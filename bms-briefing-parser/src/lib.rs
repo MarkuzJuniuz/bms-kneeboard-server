@@ -239,7 +239,7 @@ impl<'a> ThreatAnalysis<'a> {
 
 #[derive(Debug, Clone, Serialize)]
 pub struct Steerpoint<'a> {
-    pub steerpoint: usize,
+    pub steerpoint: Option<String>,
     pub description: Option<&'a str>,
     pub time: Option<&'a str>,
     pub distance: Option<f64>,
@@ -253,6 +253,12 @@ pub struct Steerpoint<'a> {
 
 impl<'a> Steerpoint<'a> {
     pub fn from_briefing(briefing: &'a str) -> Vec<Self> {
+        let aircraft = PackageElement::from_briefing(briefing)
+            .into_iter()
+            .find(|p| p.is_primary)
+            .map(|p| p.aircraft)
+            .unwrap_or_default();
+
         let Some(steerpoints) = extract_group(briefing, "Steerpoints") else {
             return Default::default();
         };
@@ -268,7 +274,17 @@ impl<'a> Steerpoint<'a> {
         for line in lines {
             let mut values = line.split('\t').map(str::trim).filter(|l| !l.is_empty());
             let Some(index) = values.next() else { continue };
-            let index: usize = index.parse().unwrap();
+            let Ok(index) = index.parse::<usize>() else { continue };
+
+            let steer_label = if aircraft.to_lowercase().contains("f-15c") {
+                if index == 1 {
+                    "B".to_string()
+                } else {
+                    format!("{}", index.saturating_sub(1))
+                }
+            } else {
+                format!("{}", index)
+            };
 
             let Some(description) = values.next() else {
                 continue;
@@ -306,7 +322,7 @@ impl<'a> Steerpoint<'a> {
             let comments = to_option(comments);
 
             steerpoints.push(Self {
-                steerpoint: index,
+                steerpoint: Some(steer_label),
                 description,
                 time,
                 distance,

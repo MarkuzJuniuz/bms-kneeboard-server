@@ -1,73 +1,73 @@
-body {
-    background: black;
+html {
+    background-color: #fff;
+    height: 1327px;
+    width: 1080px;
+    border: 1px solid black;
+    overflow: hidden;
 }
 
-:root {
-    /* Custom Variables */
-    --text-color-primary: #000;
-    --text-color-secondary: #000;
+body {
+    font-family: 'Courier New', 'Lucida Console', 'Consolas', monospace;
+    font-size: 11pt;
+    margin: 5px;
+    height: calc(100% - 10px);
+    box-sizing: border-box;
+}
 
-    --single-page-background: #ccc;
+p {
+    margin: 0;
+    padding: 0;
+}
 
-    --background-primary: rgb(214, 179, 179);
-    --background-secondary: rgb(179, 214, 212);
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
 
-    /* Built in variables */
-    --commladder-background-primary: var(--background-primary);
-    --commladder-background-secondary: var(--background-secondary);
-    --commladder-foreground-primary: var(--text-color-primary);
-    --commladder-foreground-secondary: var(--text-color-secondary);
+th,
+caption {
+    text-transform: uppercase;
+    font-size: 12pt;
+    font-weight: bold;
+    height: 24px;
+    line-height: 24px;
+    padding: 0 3px;
+    box-sizing: border-box;
+}
 
-    --elements-background-primary: var(--background-primary);
-    --elements-background-secondary: var(--background-secondary);
-    --elements-foreground-primary: var(--text-color-primary);
-    --elements-foreground-secondary: var(--text-color-secondary);
+th {
+    background: #DDD;
+}
 
-    --emergency-background: var(--single-page-background);
-    --emergency-foreground: var(--text-color-primary);
+caption.leader {
+    background: #000;
+    color: #FFF;
+}
 
-    --iff-background-primary: var(--background-primary);
-    --iff-background-secondary: var(--background-secondary);
-    --iff-foreground-primary: var(--text-color-primary);
-    --iff-foreground-secondary: var(--text-color-secondary);
+td {
+    text-align: left;
+    padding: 3px;
+    vertical-align: top;
+}
 
-    --ordnance-background-primary: var(--background-primary);
-    --ordnance-background-secondary: var(--background-secondary);
-    --ordnance-foreground-primary: var(--text-color-primary);
-    --ordnance-foreground-secondary: var(--text-color-secondary);
+tr.primary {
+    font-weight: bold;
+}
 
-    --overview-background-primary: var(--background-primary);
-    --overview-background-secondary: var(--background-secondary);
-    --overview-foreground-primary: var(--text-color-primary);
-    --overview-foreground-secondary: var(--text-color-secondary);
+div.message_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 40px;
+}
 
-    --roe-background: var(--single-page-background);
-    --roe-foreground: var(--text-color-primary);
-
-    --roster-background-primary: var(--background-primary);
-    --roster-background-secondary: var(--background-secondary);
-    --roster-foreground-primary: var(--text-color-primary);
-    --roster-foreground-secondary: var(--text-color-secondary);
-
-    --sitrep-background: var(--background-primary);
-    --sitrep-foreground: var(--text-color-primary);
-
-    --steerpoints-background-primary: var(--background-primary);
-    --steerpoints-background-secondary: var(--background-secondary);
-    --steerpoints-foreground-primary: var(--text-color-primary);
-    --steerpoints-foreground-secondary: var(--text-color-secondary);
-
-    --support-background-primary: var(--background-primary);
-    --support-background-secondary: var(--background-secondary);
-    --support-foreground-primary: var(--text-color-primary);
-    --support-foreground-secondary: var(--text-color-secondary);
-
-    --threat-background: var(--single-page-background);
-    --threat-foreground: var(--text-color-primary);
-
-    --weather-background-primary: var(--background-primary);
-    --weather-background-secondary: var(--background-secondary);
-    --weather-foreground-primary: var(--text-color-primary);
-    --weather-foreground-secondary: var(--text-color-secondary);
-
+div.message {
+    color: #000;
+    text-align: center;
+    font-weight: bold;
+    font-size: 3em;
+    line-height: 1.2;
 }
