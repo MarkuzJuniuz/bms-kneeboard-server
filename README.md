@@ -5,6 +5,8 @@
 
 BMS-Kneeboard-Server is a tool that transforms Falcon BMS's `briefing.txt` into a HTML server that can be used in OpenKneeboard's **Web Dashboard** tab, or, as a side effect of how it works, it can also be displayed on an external device such as a tablet.
 
+> *Note: This is an adapted version based on the original [bms-kneeboard-server](https://github.com/AviiNL/bms-kneeboard-server) by AviiNL.*
+
 ## Prerequisites
 
 Ensure `1. Briefing Output to File` is **checked**, and `3. HTML Briefings` is **not** checked in the config.
