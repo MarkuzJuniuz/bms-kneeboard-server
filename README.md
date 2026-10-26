@@ -65,12 +65,13 @@ Usage: bms-kneeboard-server.exe [OPTIONS] [BRIEFING_DIR]
 Arguments:
   [BRIEFING_DIR]  Override directory containing briefing.txt, disabled autodetect
 
+```markdown /README.md
 Options:
   -l, --listen <LISTEN>  Webserver listen address:port [default: 127.0.0.1:7878]
   -h, --help             Print help
   -V, --version          Print version
 ```
 [find-local-ip]: https://support.microsoft.com/en-us/windows/find-your-ip-address-in-windows-f21a9bbc-c582-55cd-35e0-73431160a1b9
-[config-manager]: assets/config-manager.png
-[preview]: assets/preview.png
-[trayicon]: assets/trayicon.png
+[config-manager]: ./assets/config-manager.png
+[preview]: ./assets/preview.png
+[trayicon]: ./assets/trayicon.png
