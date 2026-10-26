@@ -413,14 +413,14 @@ dependencies = [
 
 [[package]]
 name = "bms-briefing-parser"
-version = "0.1.3"
+version = "0.1.4"
 dependencies = [
  "serde",
 ]
 
 [[package]]
 name = "bms-kneeboard-server"
-version = "0.1.3"
+version = "0.1.4"
 dependencies = [
  "axum",
  "bms-briefing-parser",

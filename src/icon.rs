@@ -53,7 +53,7 @@ pub fn start(listen: SocketAddr) -> Result<(), Box<dyn std::error::Error>> {
             }
             if event.id == help_i.id() {
                 if let Err(e) = open::that(
-                    "https://github.com/aviinl/bms-kneeboard-server#bms-kneeboard-server",
+                    "https://github.com/MarkuzJuniuz/bms-kneeboard-server#bms-kneeboard-server",
                 ) {
                     eprintln!("Failed to open: {:?}", e);
                 }
