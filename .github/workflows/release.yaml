@@ -3,11 +3,11 @@ name: Release
 on:
   push:
     tags:
-      - 'v*'
+      - "v*"
 
 jobs:
   release:
-    name: Publish Release
+    name: Build and publish
     runs-on: windows-latest
 
     permissions:
@@ -17,15 +17,30 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # rust-toolchain.toml pins nightly, so install nightly to match
       - name: Install Rust toolchain
-        uses: dtolnay/rust-toolchain@stable
+        uses: dtolnay/rust-toolchain@nightly
+
+      - name: Cache cargo build
+        uses: Swatinem/rust-cache@v2
 
       - name: Build release binary
         run: cargo build --release
 
-      - name: Create GitHub Release and Upload Asset
+      # style.css and the templates are compiled into the exe,
+      # so the exe plus the README is all the zip needs
+      - name: Package zip
+        shell: pwsh
+        run: |
+          $name = "bms-kneeboard-server_$env:GITHUB_REF_NAME"
+          New-Item -ItemType Directory -Path $name | Out-Null
+          Copy-Item target/release/bms-kneeboard-server.exe $name/
+          Copy-Item README.md $name/
+          Compress-Archive -Path $name -DestinationPath "$name.zip"
+          "ZIP_NAME=$name.zip" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+
+      - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: target/release/bms-kneeboard-server.exe
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          files: ${{ env.ZIP_NAME }}
+          generate_release_notes: true
