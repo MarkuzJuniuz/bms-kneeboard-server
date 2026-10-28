@@ -36,6 +36,7 @@ jobs:
           New-Item -ItemType Directory -Path $name | Out-Null
           Copy-Item target/release/bms-kneeboard-server.exe $name/
           Copy-Item README.md $name/
+          Copy-Item assets $name/assets -Recurse
           Compress-Archive -Path $name -DestinationPath "$name.zip"
           "ZIP_NAME=$name.zip" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
 
